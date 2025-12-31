@@ -4,6 +4,9 @@
   <meta charset="UTF-8">
   <title>Route Department | Chester Bus Simulator</title>
 
+  <!-- Mobile friendly -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
   <style>
     :root {
       --main-color: #3b82f6;
@@ -53,12 +56,13 @@
       margin-bottom: 15px;
     }
 
-    input, button, select, textarea {
+    input, textarea, button {
       width: 100%;
       padding: 10px;
-      margin: 5px 0;
+      margin: 6px 0;
       border-radius: 6px;
       border: none;
+      font-size: 14px;
     }
 
     button {
@@ -86,11 +90,10 @@
 
   <div class="box">
     <p class="note">
-      Fill out the form below to request a route. <br>
+      Fill out the form below to request a route.<br>
       All routes must be approved by the Route Department Director.
     </p>
 
-    <!-- ROUTE REQUEST FORM -->
     <form id="routeForm">
       <input type="text" id="username" placeholder="Your Roblox Username" required>
       <input type="text" id="routeName" placeholder="Route Name" required>
@@ -105,11 +108,10 @@
 
   <footer>
     Route Department © 2025 | Chester Bus Simulator<br>
-    This site is managed by the Route Department and is not owned by the game developers.
+    Not affiliated with the game developers.
   </footer>
 
   <script>
-    // Monthly color system
     const months = [
       { name: "January", color: "#3b82f6" },
       { name: "February", color: "#ec4899" },
@@ -129,21 +131,20 @@
     document.documentElement.style.setProperty("--main-color", months[currentMonth].color);
     document.getElementById("monthBadge").innerText = months[currentMonth].name + " Color";
 
-    // Form submission
     document.getElementById("routeForm").addEventListener("submit", function(e) {
       e.preventDefault();
+
       const username = document.getElementById("username").value;
       const routeName = document.getElementById("routeName").value;
       const date = document.getElementById("date").value;
       const time = document.getElementById("time").value;
-      const notes = document.getElementById("notes").value;
 
-      // Here, the "approval" system is just a message
-      document.getElementById("message").innerHTML = 
-        `✅ Route request submitted for <b>${username}</b> on <b>${date} ${time}</b> for route <b>${routeName}</b>.<br>
-        Director approval required.`;
+      document.getElementById("message").innerHTML =
+        `✅ Route request submitted for <b>${username}</b><br>
+         📅 ${date} ⏰ ${time}<br>
+         🚌 Route: <b>${routeName}</b><br>
+         Director approval required.`;
 
-      // Clear form
       document.getElementById("routeForm").reset();
     });
   </script>
