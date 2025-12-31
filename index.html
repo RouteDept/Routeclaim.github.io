@@ -1,1 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Route Department | Chester Bus Simulator</title>
 
+  <style>
+    :root {
+      --main-color: #3b82f6;
+    }
+
+    body {
+      margin: 0;
+      padding: 20px;
+      font-family: Arial, sans-serif;
+      background: #0b1220;
+      color: white;
+      text-align: center;
+    }
+
+    h1 {
+      color: var(--main-color);
+      margin-bottom: 5px;
+    }
+
+    h2 {
+      font-weight: normal;
+      margin-top: 0;
+      opacity: 0.9;
+    }
+
+    .badge {
+      display: inline-block;
+      background: var(--main-color);
+      padding: 7px 14px;
+      border-radius: 999px;
+      font-weight: bold;
+      margin: 8px 5px;
+    }
+
+    .box {
+      background: #111827;
+      border: 2px solid var(--main-color);
+      border-radius: 15px;
+      padding: 22px;
+      max-width: 600px;
+      margin: 20px auto;
+    }
+
+    .note {
+      font-size: 14px;
+      opacity: 0.85;
+      margin-bottom: 15px;
+    }
+
+    input, button, select, textarea {
+      width: 100%;
+      padding: 10px;
+      margin: 5px 0;
+      border-radius: 6px;
+      border: none;
+    }
+
+    button {
+      background: var(--main-color);
+      color: white;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    footer {
+      margin-top: 30px;
+      font-size: 13px;
+      opacity: 0.6;
+    }
+  </style>
+</head>
+
+<body>
+
+  <h1>🚍 Route Department</h1>
+  <h2>Chester Bus Simulator</h2>
+
+  <div class="badge">Approval Required</div>
+  <div class="badge" id="monthBadge">Color of the Month</div>
+
+  <div class="box">
+    <p class="note">
+      Fill out the form below to request a route. <br>
+      All routes must be approved by the Route Department Director.
+    </p>
+
+    <!-- ROUTE REQUEST FORM -->
+    <form id="routeForm">
+      <input type="text" id="username" placeholder="Your Roblox Username" required>
+      <input type="text" id="routeName" placeholder="Route Name" required>
+      <input type="date" id="date" required>
+      <input type="time" id="time" required>
+      <textarea id="notes" placeholder="Additional notes (optional)"></textarea>
+      <button type="submit">Submit Route Request</button>
+    </form>
+
+    <div id="message" style="margin-top:15px; font-weight:bold;"></div>
+  </div>
+
+  <footer>
+    Route Department © 2025 | Chester Bus Simulator<br>
+    This site is managed by the Route Department and is not owned by the game developers.
+  </footer>
+
+  <script>
+    // Monthly color system
+    const months = [
+      { name: "January", color: "#3b82f6" },
+      { name: "February", color: "#ec4899" },
+      { name: "March", color: "#22c55e" },
+      { name: "April", color: "#a855f7" },
+      { name: "May", color: "#14b8a6" },
+      { name: "June", color: "#eab308" },
+      { name: "July", color: "#ef4444" },
+      { name: "August", color: "#f97316" },
+      { name: "September", color: "#6366f1" },
+      { name: "October", color: "#7c3aed" },
+      { name: "November", color: "#78350f" },
+      { name: "December", color: "#16a34a" }
+    ];
+
+    const currentMonth = new Date().getMonth();
+    document.documentElement.style.setProperty("--main-color", months[currentMonth].color);
+    document.getElementById("monthBadge").innerText = months[currentMonth].name + " Color";
+
+    // Form submission
+    document.getElementById("routeForm").addEventListener("submit", function(e) {
+      e.preventDefault();
+      const username = document.getElementById("username").value;
+      const routeName = document.getElementById("routeName").value;
+      const date = document.getElementById("date").value;
+      const time = document.getElementById("time").value;
+      const notes = document.getElementById("notes").value;
+
+      // Here, the "approval" system is just a message
+      document.getElementById("message").innerHTML = 
+        `✅ Route request submitted for <b>${username}</b> on <b>${date} ${time}</b> for route <b>${routeName}</b>.<br>
+        Director approval required.`;
+
+      // Clear form
+      document.getElementById("routeForm").reset();
+    });
+  </script>
+
+</body>
+</html>
